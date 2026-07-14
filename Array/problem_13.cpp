@@ -1,49 +1,43 @@
 // Created: 7/12/2026
+// Descirptions:
+// Make sure there are no duplicates in this specific set of numbers
+// "1,1,2,2,3,4,4"
+// Rules:
+// - Just use the array provided
+
 #include <iostream>
 using namespace std;
 int main()
 {
-
     int arr[] = {1,1,2,2,3,4,4};
-    int newArray[] = {};
-
-    newArray[0] = arr[0];
-
     int size = sizeof(arr)/sizeof(arr[0]);
-    int size2 = 1;
-    
-
-    bool isIn = true;
-    int current = 1;
-
+    int temp = 0;
 
     for(int i = 0; i < size; i++)
     {
-        for(int j = 0; j < size2; j++)
+        if(arr[i] == arr[i+1])
         {
-            cout << "comparing: " << arr[i] << " and " << newArray[j] << endl;
-            if(arr[i] == newArray[j])
+            for(int j = i + 1; j < size; j++)
             {
-                cout << "Already in new array\n" << endl;
-                
+                if(j == size-1)
+                {
+                    arr[j] = 0;
+                }
+                else
+                {
+                    arr[j] = arr[j+1];
+                    
+                }
             }
-            else{
-                cout << "Not in new array: Placing inside of array now\n" << endl;
-                newArray[current] = arr[i];
-                current++;
-                size2++;
-            }
+            arr[size-1] = 0;
+            temp++;
         }
     }
 
-    for(int newArray:newArray)
+    for(int k = 0; k < temp - 1; k++)
     {
-        cout << newArray << " ";
+        cout << arr[k] << " ";
     }
     cout << endl;
-
-    
-
-
 
 }
